@@ -18,16 +18,16 @@
     @if (a.Item5)
     {
         <!-- Rounded switch -->
-        <label class="">
-            <input type="checkbox" checked id="@a.Item1" class="check1">
-            <span class=""></span>
+        <label class="switch">
+            <input type="checkbox" checked id=@a.Item1 class="check1">
+            <span class="slider round"></span>
         </label>
     }
     else
     {
         <!-- Rounded switch -->
         <label class="switch">
-            <input type="checkbox" id="@a.Item1" class="check2">
+            <input type="checkbox" id=@a.Item1 class="check2">
             <span class="slider round"></span>
         </label>
     }
@@ -35,10 +35,25 @@
     
 }
 
+<div class="modal fade modalmods" id="errorModal">
+    <div class="modal-dialog">
+        <center>
+            <div class="modal-content">
+                <div class="modal-body message">
+                    <span id="errorMessage"></span>
+                </div>
+            </div>
+        </center>
+    </div>
+</div>
+
 <script>
 
     $('.check1').click(function () {
-        var state = $('.check1').prop('checked');
+
+        var current = this;
+
+        var state = $(this).prop('checked');
 
         var id = $(this).attr('id');
 
@@ -50,16 +65,24 @@
             },
             url: '/Home/UpdateAlertState',
             success: function () {
-                alert("word")
+                
             },
-            error: function() {
-                alert("dang")
+            error: function () {
+
+                document.getElementById("errorMessage").innerHTML = "There was an error. Please try again later.";
+                $('#errorModal').modal("show");
+
+                $(current).prop('checked', true);
+                
             }
         });
     });
 
     $('.check2').click(function () {
-        var state = $('.check2').prop('checked');
+
+        var current = this;
+
+        var state = $(this).prop('checked');
 
         var id = $(this).attr('id');
 
@@ -71,34 +94,17 @@
             },
             url: '/Home/UpdateAlertState',
             success: function () {
-                alert("word")
+
             },
-            error: function() {
-                alert("dang")
+            error: function () {
+
+                document.getElementById("errorMessage").innerHTML = "There was an error. Please try again later.";
+                $('#errorModal').modal("show");
+
+                $(current).prop('checked', false);
+                
             }
-            });
+        });
     });
 
-    function updateState(id) {
-
-        var checkbox = document.getElementById(id).checked;
-        alert(checkbox);
-
-
-        //var state = checkbox.checked;
-
-        //alert(state);
-
-        $.ajax({
-            type: 'POST',
-            data: {
-                State: state,
-                id: id
-            },
-            url: '/Home/UpdateAlertState',
-            success: alert("word"),
-            error: alert("dang")
-        });
-    }
-    
 </script>

@@ -97,6 +97,7 @@ namespace CoinBull.Controllers
 
             Debug.WriteLine("state: " + state);
             Debug.WriteLine("id: " + id);
+
             //update the IsActive state
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
