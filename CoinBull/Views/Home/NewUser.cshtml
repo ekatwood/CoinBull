@@ -1,0 +1,249 @@
+﻿@{
+    ViewBag.Title = "CoinBull";
+    Layout = "~/Views/Shared/_LayoutNewUser.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<center>
+    <h1>Never miss another running of the Bull &#128002; &#128640;</h1>
+    <h3>Select which coins to watch:</h3>
+    <button id="select_all" onclick="selectAll()">Select All</button>
+    <button id="ONEINCH" onclick="updateCoins(this.id)">ONEINCH</button>
+    <button id="AAVE" onclick="updateCoins(this.id)">AAVE</button>
+    <button id="ADA" onclick="updateCoins(this.id)">ADA</button>
+    <button id="ALGO" onclick="updateCoins(this.id)">ALGO</button>
+    <button id="ATOM" onclick="updateCoins(this.id)">ATOM</button>
+    <button id="AVAX" onclick="updateCoins(this.id)">AVAX</button>
+    <button id="BAT" onclick="updateCoins(this.id)">BAT</button>
+    <button id="BCH" onclick="updateCoins(this.id)">BCH</button>
+    <button id="BSV" onclick="updateCoins(this.id)">BSV</button>
+    <button id="BTC" onclick="updateCoins(this.id)">BTC</button>
+    <button id="BTT" onclick="updateCoins(this.id)">BTT</button>
+    <button id="CEL" onclick="updateCoins(this.id)">CEL</button>
+    <button id="CHSB" onclick="updateCoins(this.id)">CHSB</button>
+    <button id="COMP" onclick="updateCoins(this.id)">COMP</button>
+    <button id="CRV" onclick="updateCoins(this.id)">CRV</button>
+    <button id="DASH" onclick="updateCoins(this.id)">DASH</button>
+    <button id="DCR" onclick="updateCoins(this.id)">DCR</button>
+    <button id="DGB" onclick="updateCoins(this.id)">DGB</button>
+    <button id="DOGE" onclick="updateCoins(this.id)">DOGE</button>
+    <button id="DOT" onclick="updateCoins(this.id)">DOT</button>
+    <button id="EGLD" onclick="updateCoins(this.id)">EGLD</button>
+    <button id="EOS" onclick="updateCoins(this.id)">EOS</button>
+    <button id="ETC" onclick="updateCoins(this.id)">ETC</button>
+    <button id="ETH" onclick="updateCoins(this.id)">ETH</button>
+    <button id="FIL" onclick="updateCoins(this.id)">FIL</button>
+    <button id="FTT" onclick="updateCoins(this.id)">FTT</button>
+    <button id="GRT" onclick="updateCoins(this.id)">GRT</button>
+    <button id="HBAR" onclick="updateCoins(this.id)">HBAR</button>
+    <button id="HT" onclick="updateCoins(this.id)">HT</button>
+    <button id="KSM" onclick="updateCoins(this.id)">KSM</button>
+    <button id="LINK" onclick="updateCoins(this.id)">LINK</button>
+    <button id="LRC" onclick="updateCoins(this.id)">LRC</button>
+    <button id="LTC" onclick="updateCoins(this.id)">LTC</button>
+    <button id="LUNA" onclick="updateCoins(this.id)">LUNA</button>
+    <button id="MIOTA" onclick="updateCoins(this.id)">MIOTA</button>
+    <button id="MKR" onclick="updateCoins(this.id)">MKR</button>
+    <button id="NANO" onclick="updateCoins(this.id)">NANO</button>
+    <button id="NEAR" onclick="updateCoins(this.id)">NEAR</button>
+    <button id="NEO" onclick="updateCoins(this.id)">NEO</button>
+    <button id="OMG" onclick="updateCoins(this.id)">OMG</button>
+    <button id="ONT" onclick="updateCoins(this.id)">ONT</button>
+    <button id="QNT" onclick="updateCoins(this.id)">QNT</button>
+    <button id="REN" onclick="updateCoins(this.id)">REN</button>
+    <button id="RENBTC" onclick="updateCoins(this.id)">RENBTC</button>
+    <button id="RUNE" onclick="updateCoins(this.id)">RUNE</button>
+    <button id="SC" onclick="updateCoins(this.id)">SC</button>
+    <button id="SNX" onclick="updateCoins(this.id)">SNX</button>
+    <button id="SOL" onclick="updateCoins(this.id)">SOL</button>
+    <button id="SUSHI" onclick="updateCoins(this.id)">SUSHI</button>
+    <button id="THETA" onclick="updateCoins(this.id)">THETA</button>
+    <button id="TRX" onclick="updateCoins(this.id)">TRX</button>
+    <button id="UMA" onclick="updateCoins(this.id)">UMA</button>
+    <button id="UNI" onclick="updateCoins(this.id)">UNI</button>
+    <button id="VET" onclick="updateCoins(this.id)">VET</button>
+    <button id="VGX" onclick="updateCoins(this.id)">VGX</button>
+    <button id="WAVES" onclick="updateCoins(this.id)">WAVES</button>
+    <button id="WBTC" onclick="updateCoins(this.id)">WBTC</button>
+    <button id="XEM" onclick="updateCoins(this.id)">XEM</button>
+    <button id="XLM" onclick="updateCoins(this.id)">XLM</button>
+    <button id="XMR" onclick="updateCoins(this.id)">XMR</button>
+    <button id="XRP" onclick="updateCoins(this.id)">XRP</button>
+    <button id="XTZ" onclick="updateCoins(this.id)">XTZ</button>
+    <button id="YFI" onclick="updateCoins(this.id)">YFI</button>
+    <button id="ZEC" onclick="updateCoins(this.id)">ZEC</button>
+    <button id="ZEN" onclick="updateCoins(this.id)">ZEN</button>
+    <button id="ZIL" onclick="updateCoins(this.id)">ZIL</button>
+    <button id="ZRX" onclick="updateCoins(this.id)">ZRX</button>
+    <button id="next">Next</button>
+
+</center>
+
+<div class="modal fade modalmods" id="errorModal">
+    <div class="modal-dialog">
+        <center>
+            <div class="modal-content">
+                <div class="modal-body message">
+                    <span id="errorMessage"></span>
+                </div>
+            </div>
+        </center>
+    </div>
+</div>
+
+
+<script>
+
+    const coins = {
+        "BTC": 0,
+        "ETH": 0,
+        "ONEINCH": 0,
+        "AAVE": 0,
+        "ADA": 0,
+        "ALGO": 0,
+        "ATOM": 0,
+        "AVAX": 0,
+        "BAT": 0,
+        "BCH": 0,
+        "BSV": 0,
+        "BTT": 0,
+        "CEL": 0,
+        "CHSB": 0,
+        "COMP": 0,
+        "CRV": 0,
+        "DASH": 0,
+        "DCR": 0,
+        "DGB": 0,
+        "DOGE": 0,
+        "DOT": 0,
+        "EGLD": 0,
+        "EOS": 0,
+        "ETC": 0,
+        "FIL": 0,
+        "FTT": 0,
+        "GRT": 0,
+        "HBAR": 0,
+        "HT": 0,
+        "KSM": 0,
+        "LINK": 0,
+        "LRC": 0,
+        "LTC": 0,
+        "LUNA": 0,
+        "MIOTA": 0,
+        "MKR": 0,
+        "NANO": 0,
+        "NEAR": 0,
+        "NEO": 0,
+        "OMG": 0,
+        "ONT": 0,
+        "QNT": 0,
+        "REN": 0,
+        "RENBTC": 0,
+        "RUNE": 0,
+        "SC": 0,
+        "SNX": 0,
+        "SOL": 0,
+        "SUSHI": 0,
+        "THETA": 0,
+        "TRX": 0,
+        "UMA": 0,
+        "UNI": 0,
+        "VET": 0,
+        "VGX": 0,
+        "WAVES": 0,
+        "WBTC": 0,
+        "XEM": 0,
+        "XLM": 0,
+        "XMR": 0,
+        "XRP": 0,
+        "XTZ": 0,
+        "YFI": 0,
+        "ZEC": 0,
+        "ZEN": 0,
+        "ZIL": 0,
+        "ZRX": 0
+    };
+
+    var selectedAll = false;
+
+    function updateCoins(id) {
+
+        if (coins[id] == 0) {
+            document.getElementById(id).style.backgroundColor = "red";
+            coins[id] = 1;
+
+        }
+        else {
+            document.getElementById(id).style.backgroundColor = "white";
+            coins[id] = 0;
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: { Coins: coins },
+            url: '/Home/UpdateCoins'
+        });
+
+    }
+
+    function selectAll() {
+
+        if (!selectedAll) {
+
+            selectedAll = true;
+
+            for (const [key, value] of Object.entries(coins)) {
+
+                document.getElementById("select_all").innerHTML = "Deselect All";
+                document.getElementById(key).style.backgroundColor = "red";
+                coins[key] = 1;
+
+            }
+        }
+        else {
+
+            selectedAll = false;
+
+            for (const [key, value] of Object.entries(coins)) {
+
+                document.getElementById("select_all").innerHTML = "Select All";
+                document.getElementById(key).style.backgroundColor = "white";
+                coins[key] = 0;
+
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: { Coins: coins },
+            url: '/Home/UpdateCoins'
+        });
+    }
+
+    $('#next').click(function () {
+
+        var anyCoinsSelected = false;
+
+        //check if all empty
+        for (const [key, value] of Object.entries(coins)) {
+
+            if (coins[key] == 1) {
+                anyCoinsSelected = true;
+            }
+        }
+
+        if (anyCoinsSelected == false) {
+
+            document.getElementById("errorMessage").innerHTML = "Please select at least one coin.";
+            $('#errorModal').modal("show");
+        }
+        else {
+            window.location.href = '/Home/SetAlert';
+        }
+    });
+
+</script>

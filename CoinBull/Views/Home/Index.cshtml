@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "CoinBull";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+@foreach (var a in ViewBag.Alerts)
+{
+    //id, coins, percent, minutes, isactive
+
+
+<div class="job">
+    <a id="@a.Item1">@a.Item3% in @a.Item4 minutes</a>
+
+    @if (a.Item5)
+    {
+        <!-- Rounded switch -->
+        <label class="">
+            <input type="checkbox" checked id="@a.Item1" class="check1">
+            <span class=""></span>
+        </label>
+    }
+    else
+    {
+        <!-- Rounded switch -->
+        <label class="switch">
+            <input type="checkbox" id="@a.Item1" class="check2">
+            <span class="slider round"></span>
+        </label>
+    }
+</div>
+    
+}
+
+<script>
+
+    $('.check1').click(function () {
+        var state = $('.check1').prop('checked');
+
+        var id = $(this).attr('id');
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                state: state,
+                id: id
+            },
+            url: '/Home/UpdateAlertState',
+            success: function () {
+                alert("word")
+            },
+            error: function() {
+                alert("dang")
+            }
+        });
+    });
+
+    $('.check2').click(function () {
+        var state = $('.check2').prop('checked');
+
+        var id = $(this).attr('id');
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                state: state,
+                id: id
+            },
+            url: '/Home/UpdateAlertState',
+            success: function () {
+                alert("word")
+            },
+            error: function() {
+                alert("dang")
+            }
+            });
+    });
+
+    function updateState(id) {
+
+        var checkbox = document.getElementById(id).checked;
+        alert(checkbox);
+
+
+        //var state = checkbox.checked;
+
+        //alert(state);
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                State: state,
+                id: id
+            },
+            url: '/Home/UpdateAlertState',
+            success: alert("word"),
+            error: alert("dang")
+        });
+    }
+    
+</script>
