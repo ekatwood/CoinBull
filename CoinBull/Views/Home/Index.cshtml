@@ -14,10 +14,28 @@
     string percent = a.Item3.ToString();
     string minutes = a.Item4.ToString();
 
+    string minutesOrHours = " ";
+
 
 <div class="job">
 
-    @Html.ActionLink(percent + "% in "+ minutes +" minutes", "EditAlert","Home", new { alertId = id }, null)
+    <!-- set up formatting -->
+    @if(Convert.ToInt32(minutes) < 60)
+    {
+        minutesOrHours = minutesOrHours + "minutes";
+    }
+    else if(Convert.ToInt32(minutes) == 60)
+    {
+        minutes = "1";
+        minutesOrHours = minutesOrHours + "hour";
+    }
+    else
+    {
+        minutes = (Convert.ToInt32(minutes) / 60).ToString();
+        minutesOrHours = minutesOrHours + "hours";
+    }
+
+    @Html.ActionLink(percent + "% in "+ minutes + minutesOrHours, "EditAlert","Home", new { alertId = id }, null)
 
     @if (a.Item5)
     {

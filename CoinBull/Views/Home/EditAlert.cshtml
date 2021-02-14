@@ -1,12 +1,16 @@
-﻿
-@{
-    ViewBag.Title = "EditAlert";
+﻿@{
+    ViewBag.Title = "Edit Alert";
 }
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+
 <center>
     <h3>Edit Alert</h3>
 
     <p>
-        Notify me when any coin increases in value by
         <select name="percent" id="percent">
             @{
                 int i = 1;
@@ -67,9 +71,239 @@
             }
         </select>
     </p>
+    <div>
+        <button id="select_all" onclick="selectAll()">Select All</button>
+
+        @{
+            foreach (string c in ViewBag.AllCoins.ToString().Split(','))
+            {
+                string coin = c.Trim();
+
+                if (ViewBag.Coins.ToString().Contains(coin))
+                {
+                    <button id=@coin onclick="updateCoins(this.id)" style="background-color:red">@coin</button>
+                }
+                else
+                {
+                    <button id=@coin onclick="updateCoins(this.id)">@coin</button>
+                }
+            }
+        }
+
+
+        <button id="updateAlert">Update Alert</button>
+    </div>
 </center>
 
-@ViewBag.Id
-@ViewBag.Coins
-@ViewBag.Percent
-@ViewBag.Minutes 
+<div class="modal fade modalmods" id="errorModal">
+    <div class="modal-dialog">
+        <center>
+            <div class="modal-content">
+                <div class="modal-body message">
+                    <span id="errorMessage"></span>
+                </div>
+            </div>
+        </center>
+    </div>
+</div>
+
+<span hidden id="alertId">@ViewBag.Id</span>
+
+<script>
+
+    var coinsList = "ONEINCH,AAVE,ADA,ALGO,ATOM,AVAX,BAT,BCH,BSV,BTC,BTT,CEL,CHSB,COMP,CRV,DASH,DCR,DGB,DOGE,DOT,EGLD,EOS,ETC,ETH,FIL,FTT,GRT,HBAR,HT,KSM,LINK,LRC,LTC,LUNA,MIOTA,MKR,NANO,NEAR,NEO,OMG,ONT,QNT,REN,RENBTC,RUNE,SC,SNX,SOL,SUSHI,THETA,TRX,UMA,UNI,VET,VGX,WAVES,WBTC,XEM,XLM,XMR,XRP,XTZ,YFI,ZEC,ZEN,ZIL,ZRX";
+    
+    const coins = {
+        "BTC": 0,
+        "ETH": 0,
+        "ONEINCH": 0,
+        "AAVE": 0,
+        "ADA": 0,
+        "ALGO": 0,
+        "ATOM": 0,
+        "AVAX": 0,
+        "BAT": 0,
+        "BCH": 0,
+        "BSV": 0,
+        "BTT": 0,
+        "CEL": 0,
+        "CHSB": 0,
+        "COMP": 0,
+        "CRV": 0,
+        "DASH": 0,
+        "DCR": 0,
+        "DGB": 0,
+        "DOGE": 0,
+        "DOT": 0,
+        "EGLD": 0,
+        "EOS": 0,
+        "ETC": 0,
+        "FIL": 0,
+        "FTT": 0,
+        "GRT": 0,
+        "HBAR": 0,
+        "HT": 0,
+        "KSM": 0,
+        "LINK": 0,
+        "LRC": 0,
+        "LTC": 0,
+        "LUNA": 0,
+        "MIOTA": 0,
+        "MKR": 0,
+        "NANO": 0,
+        "NEAR": 0,
+        "NEO": 0,
+        "OMG": 0,
+        "ONT": 0,
+        "QNT": 0,
+        "REN": 0,
+        "RENBTC": 0,
+        "RUNE": 0,
+        "SC": 0,
+        "SNX": 0,
+        "SOL": 0,
+        "SUSHI": 0,
+        "THETA": 0,
+        "TRX": 0,
+        "UMA": 0,
+        "UNI": 0,
+        "VET": 0,
+        "VGX": 0,
+        "WAVES": 0,
+        "WBTC": 0,
+        "XEM": 0,
+        "XLM": 0,
+        "XMR": 0,
+        "XRP": 0,
+        "XTZ": 0,
+        "YFI": 0,
+        "ZEC": 0,
+        "ZEN": 0,
+        "ZIL": 0,
+        "ZRX": 0
+    };
+
+    //update the coins datastructure on load
+    window.onload = function () {
+
+        var coinsListArray = coinsList.split(",");
+        var i;
+
+        for (i = 0; i < coinsListArray.length; i++) {
+
+            if (document.getElementById(coinsListArray[i]).style.backgroundColor == "red") {
+                
+                coins[coinsListArray[i]] = 1;
+            }
+        }
+
+    };
+
+    var selectedAll = false;
+
+    function updateCoins(id) {
+
+        if (coins[id] == 0) {
+            document.getElementById(id).style.backgroundColor = "red";
+            coins[id] = 1;
+
+        }
+        else {
+            document.getElementById(id).style.backgroundColor = "white";
+            coins[id] = 0;
+        }
+
+        console.log(id);
+        console.log(coins[id]);
+
+        $.ajax({
+            type: 'POST',
+            data: { Coins: coins },
+            url: '/Home/UpdateCoins'
+        });
+
+    }
+
+    function selectAll() {
+
+        if (!selectedAll) {
+
+            selectedAll = true;
+
+            for (const [key, value] of Object.entries(coins)) {
+
+                document.getElementById("select_all").innerHTML = "Deselect All";
+                document.getElementById(key).style.backgroundColor = "red";
+                coins[key] = 1;
+
+            }
+        }
+        else {
+
+            selectedAll = false;
+
+            for (const [key, value] of Object.entries(coins)) {
+
+                document.getElementById("select_all").innerHTML = "Select All";
+                document.getElementById(key).style.backgroundColor = "white";
+                coins[key] = 0;
+
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: { Coins: coins },
+            url: '/Home/UpdateCoins'
+        });
+    }
+
+    $('#updateAlert').click(function () {
+
+        var anyCoinsSelected = false;
+
+        //check if all empty
+        for (const [key, value] of Object.entries(coins)) {
+
+            if (coins[key] == 1) {
+                anyCoinsSelected = true;
+            }
+        }
+
+        if (anyCoinsSelected == false) {
+
+            document.getElementById("errorMessage").innerHTML = "Please select at least one coin.";
+            $('#errorModal').modal("show");
+        }
+        else {
+
+            var p = document.getElementById("percent").value;
+            var m = document.getElementById("minutes").value;
+            var alertId = document.getElementById("alertId").innerHTML;
+            
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    Id: alertId,
+                    Percent: p,
+                    Minutes: m,
+                    Coins: coins
+                },
+                url: '/Home/EditAlert',
+                success: function () {
+                    window.location.href = '/Home/Index';
+                },
+                error: function () {
+
+                    document.getElementById("errorMessage").innerHTML = "There was an error. Please try again later.";
+                    $('#errorModal').modal("show");
+
+                }
+            });
+
+            
+        }
+    });
+
+</script>

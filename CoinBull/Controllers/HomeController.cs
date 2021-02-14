@@ -15,7 +15,7 @@ namespace CoinBull.Controllers
     public class HomeController : Controller
     {
         private const string connectionString = "Server=tcp:btcwidgetserver.database.windows.net,1433;Initial Catalog=btcwidgetdb;Persist Security Info=False;User ID=ekatwood;Password=ek@132EKA;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+        private const string coinsList = "ONEINCH, AAVE, ADA, ALGO, ATOM, AVAX, BAT, BCH, BSV, BTC, BTT, CEL, CHSB, COMP, CRV, DASH, DCR, DGB, DOGE, DOT, EGLD, EOS, ETC, ETH, FIL, FTT, GRT, HBAR, HT, KSM, LINK, LRC, LTC, LUNA, MIOTA, MKR, NANO, NEAR, NEO, OMG, ONT, QNT, REN, RENBTC, RUNE, SC, SNX, SOL, SUSHI, THETA, TRX, UMA, UNI, VET, VGX, WAVES, WBTC, XEM, XLM, XMR, XRP, XTZ, YFI, ZEC, ZEN, ZIL, ZRX";
         public async Task<ActionResult> Index()
         {
             if (!Request.IsAuthenticated)
@@ -77,6 +77,7 @@ namespace CoinBull.Controllers
                 }
             }
 
+            Debug.WriteLine(m);
             TempData["Coins"] = m;
 
             return;
@@ -156,6 +157,7 @@ namespace CoinBull.Controllers
                         ViewBag.Coins = r["ListOfCoins"];
                         ViewBag.Percent = r["PercentChange"];
                         ViewBag.Minutes = r["Minutes"];
+                        ViewBag.AllCoins = coinsList;
                     }
 
                 }
@@ -163,6 +165,48 @@ namespace CoinBull.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<bool> EditAlert(string Id, string Percent, string Minutes, Dictionary<string, int> Coins)
+        {
+            
+            //convert to string
+            string m = "";
+            foreach (KeyValuePair<string, int> c in Coins)
+            {
+                if (c.Value == 1)
+                {
+                    if (m == "")
+                        m = c.Key;
+                    else
+                        m = m + "," + c.Key;
+                }
+            }
+
+            //update alert
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new SqlCommand("UpdateAlert", connection))
+                {
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = Convert.ToInt32(Id);
+                    command.Parameters.Add("@coins", SqlDbType.VarChar).Value = m;
+                    command.Parameters.Add("@percent", SqlDbType.Int).Value = Convert.ToInt32(Percent);
+                    command.Parameters.Add("@minutes", SqlDbType.Int).Value = Convert.ToInt32(Minutes);
+
+                    await command.ExecuteNonQueryAsync();
+
+                }
+                connection.Close();
+            }
+
+
+            return true;
         }
 
         public ActionResult About()
