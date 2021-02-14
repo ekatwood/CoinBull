@@ -5,8 +5,8 @@ using System.Web;
 
 namespace CoinBull.Models
 {
-    public class Alert
+    public class EditAlert
     {
-        public Dictionary<string, int> Coins { get; set; }
+        
     }
 }

@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "EditAlert";
+}
+<center>
+    <h3>Edit Alert</h3>
+
+    <p>
+        Notify me when any coin increases in value by
+        <select name="percent" id="percent">
+            @{
+                int i = 1;
+                while (i <= 100)
+                {
+                    if (Convert.ToInt32(ViewBag.Percent) == i)
+                    {
+                        <option value=@i selected>@i%</option>
+                    }
+                    else
+                    {
+                        <option value=@i>@i%</option>
+                    }
+                    i++;
+                }
+            }
+        </select> in
+        <select name="minutes" id="minutes">
+            @{
+                int j = 5;
+                while (j <= 55)
+                {
+                    if (Convert.ToInt32(ViewBag.Minutes) == j)
+                    {
+                        <option value=@j selected>@j minutes</option>
+                    }
+                    else
+                    {
+                        <option value=@j>@j minutes</option>
+                    }
+                    j += 5;
+                }
+
+                if (Convert.ToInt32(ViewBag.Minutes) == 60)
+                {
+                    <option value="60" selected>1 hour</option>
+                }
+                else
+                {
+                    <option value="60">1 hour</option>
+                }
+
+                int k = 120;
+                int counter = 2;
+                while (k <= 1440)
+                {
+                    if (Convert.ToInt32(ViewBag.Minutes) == k)
+                    {
+                        <option value=@counter selected>@counter hours</option>
+                    }
+                    else
+                    {
+                        <option value=@k>@counter hours</option>
+                    }
+                    k += 60;
+                    counter++;
+                }
+            }
+        </select>
+    </p>
+</center>
+
+@ViewBag.Id
+@ViewBag.Coins
+@ViewBag.Percent
+@ViewBag.Minutes 

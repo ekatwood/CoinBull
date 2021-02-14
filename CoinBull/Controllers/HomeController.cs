@@ -132,6 +132,39 @@ namespace CoinBull.Controllers
             return View();
         }
 
+        public async Task<ActionResult> EditAlert(string alertId)
+        {
+
+            //get job
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new SqlCommand("GetJob", connection))
+                {
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = Convert.ToInt32(alertId);
+
+
+                    SqlDataReader r = await command.ExecuteReaderAsync();
+
+                    while (r.Read())
+                    {
+                        ViewBag.Id = alertId;
+                        ViewBag.Coins = r["ListOfCoins"];
+                        ViewBag.Percent = r["PercentChange"];
+                        ViewBag.Minutes = r["Minutes"];
+                    }
+
+                }
+                connection.Close();
+            }
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

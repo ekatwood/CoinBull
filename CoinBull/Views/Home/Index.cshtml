@@ -10,10 +10,14 @@
 @foreach (var a in ViewBag.Alerts)
 {
     //id, coins, percent, minutes, isactive
+    string id = a.Item1.ToString();
+    string percent = a.Item3.ToString();
+    string minutes = a.Item4.ToString();
 
 
 <div class="job">
-    <a id="@a.Item1">@a.Item3% in @a.Item4 minutes</a>
+
+    @Html.ActionLink(percent + "% in "+ minutes +" minutes", "EditAlert","Home", new { alertId = id }, null)
 
     @if (a.Item5)
     {
