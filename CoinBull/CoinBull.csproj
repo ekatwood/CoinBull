@@ -240,6 +240,7 @@
     <Content Include="Views\Shared\_LayoutNewUser.cshtml" />
     <Content Include="Views\Home\SetAlert.cshtml" />
     <Content Include="Views\Home\EditAlert.cshtml" />
+    <Content Include="Views\Home\AddAlert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

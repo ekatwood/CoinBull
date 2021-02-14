@@ -57,6 +57,8 @@
     
 }
 
+<button id="addAlert">Add Alert</button>
+
 <div class="modal fade modalmods" id="errorModal">
     <div class="modal-dialog">
         <center>
@@ -127,6 +129,11 @@
                 
             }
         });
+    });
+
+    $('#addAlert').click(function () {
+
+        window.location.href = '/Home/AddAlert';
     });
 
 </script>

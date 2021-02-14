@@ -209,6 +209,80 @@ namespace CoinBull.Controllers
             return true;
         }
 
+        public ActionResult AddAlert()
+        {
+            ViewBag.AllCoins = coinsList;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<bool> AddAlert(string Percent, string Minutes, Dictionary<string, int> Coins)
+        {
+
+            //convert to string
+            string m = "";
+            foreach (KeyValuePair<string, int> c in Coins)
+            {
+                if (c.Value == 1)
+                {
+                    if (m == "")
+                        m = c.Key;
+                    else
+                        m = m + "," + c.Key;
+                }
+            }
+
+            //update alert
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new SqlCommand("AddJob", connection))
+                {
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@user", SqlDbType.VarChar).Value = User.Identity.GetUserName();
+                    command.Parameters.Add("@coins", SqlDbType.VarChar).Value = m;
+                    command.Parameters.Add("@percent", SqlDbType.Int).Value = Convert.ToInt32(Percent);
+                    command.Parameters.Add("@minutes", SqlDbType.Int).Value = Convert.ToInt32(Minutes);
+
+                    await command.ExecuteNonQueryAsync();
+
+                }
+                connection.Close();
+            }
+
+
+            return true;
+        }
+
+        [HttpPost]
+        public async Task<bool> DeleteAlert(string Id)
+        {
+            //delete alert
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new SqlCommand("DeleteAlert", connection))
+                {
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = Convert.ToInt32(Id);
+
+                    await command.ExecuteNonQueryAsync();
+
+                }
+                connection.Close();
+            }
+
+
+            return true;
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
