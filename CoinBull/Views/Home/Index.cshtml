@@ -7,57 +7,64 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/Site.css" rel="stylesheet" />
 
-@foreach (var a in ViewBag.Alerts)
-{
-    //id, coins, percent, minutes, isactive
-    string id = a.Item1.ToString();
-    string percent = a.Item3.ToString();
-    string minutes = a.Item4.ToString();
+<center>
+    <div class="alertList">
+        @foreach (var a in ViewBag.Alerts)
+        {
+            //id, coins, percent, minutes, isactive
+            string id = a.Item1.ToString();
+            string percent = a.Item3.ToString();
+            string minutes = a.Item4.ToString();
 
-    string minutesOrHours = " ";
+            string minutesOrHours = " ";
 
 
-<div class="job">
+            <div class="myAlert">
 
-    <!-- set up formatting -->
-    @if(Convert.ToInt32(minutes) < 60)
-    {
-        minutesOrHours = minutesOrHours + "minutes";
-    }
-    else if(Convert.ToInt32(minutes) == 60)
-    {
-        minutes = "1";
-        minutesOrHours = minutesOrHours + "hour";
-    }
-    else
-    {
-        minutes = (Convert.ToInt32(minutes) / 60).ToString();
-        minutesOrHours = minutesOrHours + "hours";
-    }
+                <!-- set up formatting -->
+                @if (Convert.ToInt32(minutes) < 60)
+                {
+                    minutesOrHours = minutesOrHours + "minutes";
+                }
+                else if (Convert.ToInt32(minutes) == 60)
+                {
+                    minutes = "1";
+                    minutesOrHours = minutesOrHours + "hour";
+                }
+                else
+                {
+                    minutes = (Convert.ToInt32(minutes) / 60).ToString();
+                    minutesOrHours = minutesOrHours + "hours";
+                }
 
-    @Html.ActionLink(percent + "% in "+ minutes + minutesOrHours, "EditAlert","Home", new { alertId = id }, null)
+                @Html.ActionLink(percent + "% in " + minutes + minutesOrHours, "EditAlert", "Home", new { alertId = id }, new { @class = "alertLink"})
 
-    @if (a.Item5)
-    {
-        <!-- Rounded switch -->
-        <label class="switch">
-            <input type="checkbox" checked id=@a.Item1 class="check1">
-            <span class="slider round"></span>
-        </label>
-    }
-    else
-    {
-        <!-- Rounded switch -->
-        <label class="switch">
-            <input type="checkbox" id=@a.Item1 class="check2">
-            <span class="slider round"></span>
-        </label>
-    }
-</div>
+                @if (a.Item5)
+                {
+                    <!-- Rounded switch -->
+                    <label class="switch">
+                        <input type="checkbox" checked id=@a.Item1 class="check1">
+                        <span class="slider round"></span>
+                    </label>
+                }
+                else
+                {
+                    <!-- Rounded switch -->
+                    <label class="switch">
+                        <input type="checkbox" id=@a.Item1 class="check2">
+                        <span class="slider round"></span>
+                    </label>
+                }
+            </div>
+
+        }
+    </div>
+
+    <div>
+        <button class="plus-button" id="addAlert"></button>
+    </div>
     
-}
-
-<button id="addAlert">Add Alert</button>
+</center>
 
 <div class="modal fade modalmods" id="errorModal">
     <div class="modal-dialog">

@@ -15,7 +15,7 @@ namespace CoinBull.Controllers
     public class HomeController : Controller
     {
         private const string connectionString = "Server=tcp:btcwidgetserver.database.windows.net,1433;Initial Catalog=btcwidgetdb;Persist Security Info=False;User ID=ekatwood;Password=ek@132EKA;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        private const string coinsList = "ONEINCH, AAVE, ADA, ALGO, ATOM, AVAX, BAT, BCH, BSV, BTC, BTT, CEL, CHSB, COMP, CRV, DASH, DCR, DGB, DOGE, DOT, EGLD, EOS, ETC, ETH, FIL, FTT, GRT, HBAR, HT, KSM, LINK, LRC, LTC, LUNA, MIOTA, MKR, NANO, NEAR, NEO, OMG, ONT, QNT, REN, RENBTC, RUNE, SC, SNX, SOL, SUSHI, THETA, TRX, UMA, UNI, VET, VGX, WAVES, WBTC, XEM, XLM, XMR, XRP, XTZ, YFI, ZEC, ZEN, ZIL, ZRX";
+        private const string coinsList = "AAVE,ADA,ALGO,ATOM,AVAX,BAT,BCH,BSV,BTC,CEL,CHSB,COMP,CRV,DASH,DCR,DGB,DOGE,DOT,EGLD,EOS,ETC,ETH,FIL,FTT,GRT,HBAR,KSM,LINK,LRC,LTC,LUNA,MIOTA,MKR,NANO,NEAR,NEO,OMG,ONEINCH,ONT,QNT,REN,RENBTC,RUNE,SC,SNX,SOL,SUSHI,THETA,TRX,UMA,UNI,VET,WAVES,WBTC,XEM,XLM,XMR,XRP,XTZ,YFI,ZEC,ZEN,ZIL,ZRX";
         public async Task<ActionResult> Index()
         {
             if (!Request.IsAuthenticated)
@@ -58,6 +58,9 @@ namespace CoinBull.Controllers
 
         public ActionResult NewUser()
         {
+            ViewBag.Coins = coinsList;
+
+            Debug.WriteLine(coinsList.Split(',').Length);
             return View();
         }
 

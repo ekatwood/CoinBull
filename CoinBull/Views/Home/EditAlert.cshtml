@@ -71,31 +71,63 @@
             }
         </select>
     </p>
-    <div>
-        <button id="select_all" onclick="selectAll()">Select All</button>
+        <button id="select_all" onclick="selectAll()" class="selectAllButton">Select All</button>
+        <br />
+        <br />
 
-        @{
-            foreach (string c in ViewBag.AllCoins.ToString().Split(','))
-            {
-                string coin = c.Trim();
+        <div class="buttonsContainer">
+            @{
+                int length = ViewBag.AllCoins.ToString().Split(',').Length;
+                int c = 0;
+                var coins = ViewBag.AllCoins.ToString().Split(',');
 
-                if (ViewBag.Coins.ToString().Contains(coin))
+                string coinone = "";
+                string cointwo = "";
+
+                while (c < length - 1)
                 {
-                    <button id=@coin onclick="updateCoins(this.id)" style="background-color:red">@coin</button>
-                }
-                else
-                {
-                    <button id=@coin onclick="updateCoins(this.id)">@coin</button>
-                }
-            }
-        }
+                    coinone = coins[c];
+                    cointwo = coins[c + 1];
 
+                    <div class="row">
 
-        <button id="updateAlert">Update Alert</button>
-    </div>
-    <div>
-        <button id="deleteAlert">Delete Alert</button>
-    </div>
+                        <div class="col-xs-6">
+                            @if (ViewBag.Coins.ToString().Contains(coinone))
+                            {
+                                <button id=@coinone onclick="updateCoins(this.id)" class="coinButton" style="background-color:#d11d17;color:white">@coinone</button>
+                            }
+                            else
+                            {
+                                <button id=@coinone onclick="updateCoins(this.id)" class="coinButton">@coinone</button>
+                            }
+                        </div>
+
+                        <div class="col-xs-6">
+                            @if (ViewBag.Coins.ToString().Contains(cointwo))
+                            {
+                                <button id=@cointwo onclick="updateCoins(this.id)" class="coinButton" style="background-color: #d11d17;color:white">@cointwo</button>
+                            }
+                            else
+                            {
+                                <button id=@cointwo onclick="updateCoins(this.id)" class="coinButton">@cointwo</button>
+                            }
+                            
+                        </div>
+                    </div>
+                    c += 2;
+                    }
+                }
+                </div>
+    <br />
+    <br />
+    
+    <button id="updateAlert" class="actionButton">Update Alert</button>
+    
+    <br />
+    <br />
+
+    <button id="deleteAlert" class="actionButton" style="background-color:darkred;border-color:darkred">Delete Alert</button>
+
 </center>
 
 <div class="modal fade modalmods" id="errorModal">
@@ -130,7 +162,7 @@
 
 <script>
 
-    var coinsList = "ONEINCH,AAVE,ADA,ALGO,ATOM,AVAX,BAT,BCH,BSV,BTC,BTT,CEL,CHSB,COMP,CRV,DASH,DCR,DGB,DOGE,DOT,EGLD,EOS,ETC,ETH,FIL,FTT,GRT,HBAR,HT,KSM,LINK,LRC,LTC,LUNA,MIOTA,MKR,NANO,NEAR,NEO,OMG,ONT,QNT,REN,RENBTC,RUNE,SC,SNX,SOL,SUSHI,THETA,TRX,UMA,UNI,VET,VGX,WAVES,WBTC,XEM,XLM,XMR,XRP,XTZ,YFI,ZEC,ZEN,ZIL,ZRX";
+    var coinsList = "AAVE,ADA,ALGO,ATOM,AVAX,BAT,BCH,BSV,BTC,CEL,CHSB,COMP,CRV,DASH,DCR,DGB,DOGE,DOT,EGLD,EOS,ETC,ETH,FIL,FTT,GRT,HBAR,KSM,LINK,LRC,LTC,LUNA,MIOTA,MKR,NANO,NEAR,NEO,OMG,ONEINCH,ONT,QNT,REN,RENBTC,RUNE,SC,SNX,SOL,SUSHI,THETA,TRX,UMA,UNI,VET,WAVES,WBTC,XEM,XLM,XMR,XRP,XTZ,YFI,ZEC,ZEN,ZIL,ZRX";
     
     const coins = {
         "BTC": 0,
@@ -144,7 +176,6 @@
         "BAT": 0,
         "BCH": 0,
         "BSV": 0,
-        "BTT": 0,
         "CEL": 0,
         "CHSB": 0,
         "COMP": 0,
@@ -161,7 +192,6 @@
         "FTT": 0,
         "GRT": 0,
         "HBAR": 0,
-        "HT": 0,
         "KSM": 0,
         "LINK": 0,
         "LRC": 0,
@@ -187,7 +217,6 @@
         "UMA": 0,
         "UNI": 0,
         "VET": 0,
-        "VGX": 0,
         "WAVES": 0,
         "WBTC": 0,
         "XEM": 0,
@@ -210,8 +239,7 @@
 
         for (i = 0; i < coinsListArray.length; i++) {
 
-            if (document.getElementById(coinsListArray[i]).style.backgroundColor == "red") {
-                
+            if (document.getElementById(coinsListArray[i]).style.color == "white") {
                 coins[coinsListArray[i]] = 1;
             }
         }
@@ -223,12 +251,14 @@
     function updateCoins(id) {
 
         if (coins[id] == 0) {
-            document.getElementById(id).style.backgroundColor = "red";
+            document.getElementById(id).style.backgroundColor = "#d11d17";
+            document.getElementById(id).style.color = "white";
             coins[id] = 1;
 
         }
         else {
-            document.getElementById(id).style.backgroundColor = "white";
+            document.getElementById(id).style.backgroundColor = "transparent";
+            document.getElementById(id).style.color = "black";
             coins[id] = 0;
         }
 
@@ -252,7 +282,11 @@
             for (const [key, value] of Object.entries(coins)) {
 
                 document.getElementById("select_all").innerHTML = "Deselect All";
-                document.getElementById(key).style.backgroundColor = "red";
+                document.getElementById("select_all").style.backgroundColor = "#d11d17";
+                document.getElementById("select_all").style.color = "white";
+                document.getElementById(key).style.backgroundColor = "#d11d17";
+                document.getElementById(key).style.color = "white";
+
                 coins[key] = 1;
 
             }
@@ -264,7 +298,11 @@
             for (const [key, value] of Object.entries(coins)) {
 
                 document.getElementById("select_all").innerHTML = "Select All";
-                document.getElementById(key).style.backgroundColor = "white";
+                document.getElementById("select_all").style.backgroundColor = "transparent";
+                document.getElementById("select_all").style.color = "black";
+                document.getElementById(key).style.backgroundColor = "transparent";
+                document.getElementById(key).style.color = "black";
+
                 coins[key] = 0;
 
             }

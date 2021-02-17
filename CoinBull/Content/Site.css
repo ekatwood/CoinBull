@@ -3,12 +3,155 @@
     padding-bottom: 20px;
 }
 
+label{
+    margin-bottom: 0;
+}
+
+#errorModal{
+    margin-top:50px;
+}
+
+.buttonsContainer {
+    max-width: 350px;
+}
+
+.coinButton {
+    background-color:transparent;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 145px;
+    border-radius: 10px;
+    border: 2px solid #d11d17;
+}
+
+.selectAllButton {
+    background-color: transparent;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 145px;
+    border-radius: 10px;
+    border: 2px solid #d11d17;
+}
+
+
+.actionButton {
+    background-color: #d11d17;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 145px;
+    border-radius: 10px;
+    border: 2px solid #d11d17;
+}
+
+
+
+
+.alertList {
+    margin-top: 10px;
+    max-width: 270px;
+
+}
+
+.myAlert {
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    padding: 5px;
+    margin-bottom: 10px;
+    height: 42px;
+}
+
+.alertLink {
+    float: left;
+    padding-top:6px;
+    
+}
+
+/* unvisited link */
+.alertLink:link {
+    color: black;
+    text-decoration: none;
+}
+
+/* visited link */
+.alertLink:visited {
+    color: black;
+    text-decoration: none;
+}
+
+/* mouse over link */
+.alertLink:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/* selected link */
+.alertLink:active {
+    color: black;
+    text-decoration: none;
+}
+
+.plus-button {
+    margin-top:20px;
+    border: 1px solid white;
+    background-color: #d11d17;
+    font-size: 16px;
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 999px;
+    position: relative;
+}
+.plus-button:after, .plus-button:before {
+    content: "";
+    display: block;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.plus-button:before {
+    height: 1em;
+    width: 0.2em;
+}
+
+.plus-button:after {
+    height: 0.2em;
+    width: 1em;
+}
+
+
+
+
 /* The switch - the box around the slider */
 .switch {
+    float:right;
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-top:-1px;
 }
 
 /* Hide default HTML checkbox */

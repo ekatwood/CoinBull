@@ -13,11 +13,27 @@
     <p>
         <select name="percent" id="percent">
             @{
+                int x = -20;
+                while (x <= -1)
+                {
+
+                    <option value=@x>@x%</option>
+
+                    x++;
+                }
+
+
                 int i = 1;
                 while (i <= 100)
                 {
-
-                    <option value=@i>@i%</option>
+                    if (i == 1)
+                    {
+                        <option value=@i selected>@i%</option>
+                    }
+                    else
+                    {
+                        <option value=@i>@i%</option>
+                    }
 
                     i++;
                 }
@@ -50,7 +66,7 @@
         </select>
     </p>
     <div>
-        <button id="select_all" onclick="selectAll()">Select All</button>
+        <button id="select_all" onclick="selectAll()" class="selectAllButton">Select All</button>
 
         @{
             foreach (string c in ViewBag.AllCoins.ToString().Split(','))
@@ -81,7 +97,7 @@
 
 <script>
 
-    var coinsList = "ONEINCH,AAVE,ADA,ALGO,ATOM,AVAX,BAT,BCH,BSV,BTC,BTT,CEL,CHSB,COMP,CRV,DASH,DCR,DGB,DOGE,DOT,EGLD,EOS,ETC,ETH,FIL,FTT,GRT,HBAR,HT,KSM,LINK,LRC,LTC,LUNA,MIOTA,MKR,NANO,NEAR,NEO,OMG,ONT,QNT,REN,RENBTC,RUNE,SC,SNX,SOL,SUSHI,THETA,TRX,UMA,UNI,VET,VGX,WAVES,WBTC,XEM,XLM,XMR,XRP,XTZ,YFI,ZEC,ZEN,ZIL,ZRX";
+    var coinsList = "AAVE,ADA,ALGO,ATOM,AVAX,BAT,BCH,BSV,BTC,CEL,CHSB,COMP,CRV,DASH,DCR,DGB,DOGE,DOT,EGLD,EOS,ETC,ETH,FIL,FTT,GRT,HBAR,KSM,LINK,LRC,LTC,LUNA,MIOTA,MKR,NANO,NEAR,NEO,OMG,ONEINCH,ONT,QNT,REN,RENBTC,RUNE,SC,SNX,SOL,SUSHI,THETA,TRX,UMA,UNI,VET,WAVES,WBTC,XEM,XLM,XMR,XRP,XTZ,YFI,ZEC,ZEN,ZIL,ZRX";
 
     const coins = {
         "BTC": 0,
@@ -95,7 +111,6 @@
         "BAT": 0,
         "BCH": 0,
         "BSV": 0,
-        "BTT": 0,
         "CEL": 0,
         "CHSB": 0,
         "COMP": 0,
@@ -112,7 +127,6 @@
         "FTT": 0,
         "GRT": 0,
         "HBAR": 0,
-        "HT": 0,
         "KSM": 0,
         "LINK": 0,
         "LRC": 0,
@@ -138,7 +152,6 @@
         "UMA": 0,
         "UNI": 0,
         "VET": 0,
-        "VGX": 0,
         "WAVES": 0,
         "WBTC": 0,
         "XEM": 0,
