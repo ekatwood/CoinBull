@@ -13,6 +13,22 @@
     <p>
         <select name="percent" id="percent">
             @{
+                int x = -20;
+                while (x <= -1)
+                {
+                    if (Convert.ToInt32(ViewBag.Percent) == x)
+                    {
+                        <option value=@x selected>@x%</option>
+                    }
+                    else
+                    {
+                        <option value=@x>@x%</option>
+                    }
+
+
+                    x++;
+                }
+
                 int i = 1;
                 while (i <= 100)
                 {

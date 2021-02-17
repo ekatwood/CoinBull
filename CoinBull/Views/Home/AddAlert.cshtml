@@ -1,5 +1,10 @@
 ﻿@{
     ViewBag.Title = "Add Alert";
+
+    string coins = ViewBag.Coins;
+    var coinsList = coins.Split(',');
+    int length = coinsList.Length;
+    int l = 0;
 }
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -65,22 +70,34 @@
             }
         </select>
     </p>
-    <div>
-        <button id="select_all" onclick="selectAll()" class="selectAllButton">Select All</button>
 
-        @{
-            foreach (string c in ViewBag.AllCoins.ToString().Split(','))
-            {
-                string coin = c.Trim();
+    <button id="select_all" onclick="selectAll()" class="selectAllButton">Select All</button>
 
-                <button id=@coin onclick="updateCoins(this.id)">@coin</button>
+    <br />
+    <br />
 
-            }
+    <div class="buttonsContainer">
+
+        @while (l < length - 1)
+        {
+            <div class="row">
+                <div class="col-xs-6">
+                    <button id=@coinsList[l] onclick="updateCoins(this.id)" class="coinButton">@coinsList[l]</button>
+                </div>
+                <div class="col-xs-6">
+                    <button id=@coinsList[l+1] onclick="updateCoins(this.id)" class="coinButton">@coinsList[l + 1]</button>
+                </div>
+            </div>
+            l += 2;
         }
 
-
-        <button id="addAlert">Add Alert</button>
     </div>
+
+    <br />
+    <br />
+    
+    <button id="addAlert" class="actionButton">Add Alert</button>
+
 </center>
 
 <div class="modal fade modalmods" id="errorModal">
@@ -171,12 +188,14 @@
     function updateCoins(id) {
 
         if (coins[id] == 0) {
-            document.getElementById(id).style.backgroundColor = "red";
+            document.getElementById(id).style.backgroundColor = "#d11d17";
+            document.getElementById(id).style.color = "white";
             coins[id] = 1;
 
         }
         else {
-            document.getElementById(id).style.backgroundColor = "white";
+            document.getElementById(id).style.backgroundColor = "transparent";
+            document.getElementById(id).style.color = "black";
             coins[id] = 0;
         }
 
@@ -200,7 +219,11 @@
             for (const [key, value] of Object.entries(coins)) {
 
                 document.getElementById("select_all").innerHTML = "Deselect All";
-                document.getElementById(key).style.backgroundColor = "red";
+                document.getElementById("select_all").style.backgroundColor = "#d11d17";
+                document.getElementById("select_all").style.color = "white";
+                document.getElementById(key).style.backgroundColor = "#d11d17";
+                document.getElementById(key).style.color = "white";
+
                 coins[key] = 1;
 
             }
@@ -212,7 +235,11 @@
             for (const [key, value] of Object.entries(coins)) {
 
                 document.getElementById("select_all").innerHTML = "Select All";
-                document.getElementById(key).style.backgroundColor = "white";
+                document.getElementById("select_all").style.backgroundColor = "transparent";
+                document.getElementById("select_all").style.color = "black";
+                document.getElementById(key).style.backgroundColor = "transparent";
+                document.getElementById(key).style.color = "black";
+
                 coins[key] = 0;
 
             }

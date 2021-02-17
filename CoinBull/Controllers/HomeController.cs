@@ -214,7 +214,7 @@ namespace CoinBull.Controllers
 
         public ActionResult AddAlert()
         {
-            ViewBag.AllCoins = coinsList;
+            ViewBag.Coins = coinsList;
 
             return View();
         }

@@ -11,9 +11,10 @@
 <center>
     <h3>Choose when to be notified:</h3>
 
-    <p>
+    <br />
+    <h4 style="line-height:1.5">
         Notify me when any coin increases in value by
-        <select name="percent" id="percent">
+        <select name="percent" id="percent" style="margin-left:3px;margin-right:3px;">
             <option value="-20" 12>-20%</option>
             <option value="-19" 12>-19%</option>
             <option value="-18" 12>-18%</option>
@@ -135,7 +136,7 @@
             <option value="99" 12>99%</option>
             <option value="100" 12>100%</option>
         </select> in
-        <select name="minutes" id="minutes">
+        <select name="minutes" id="minutes" style="margin-left:3px;margin-right:3px;">
             <option value="5">5 minutes</option>
             <option value="10">10 minutes</option>
             <option value="15">15 minutes</option>
@@ -172,9 +173,16 @@
             <option value="1380">23 hours</option>
             <option value="1440">24 hours</option>
         </select>.
-    </p>
-    <button id="next">Next</button>
+    </h4>
+
+    <br />
+
+    <button id="next" class="actionButton" style="width:100px;">Next</button>
+
+    <br />
+    <br />
     <p>(Suggested first setting for catching trends: 6% in 20 minutes.)</p>
+
 </center>
 
 <script>
