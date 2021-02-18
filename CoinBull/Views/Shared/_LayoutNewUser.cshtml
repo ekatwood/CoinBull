@@ -3,12 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>CoinBull</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="CoinBull" type="image/ico" href="~/Images/favicon.png">
 
 </head>
 <body>
+    <div class="myNav">
+        <a href="~/Home/Index" style="float:left;padding-left:5px;"><img src="~/Images/bullicon.png" /></a>
+        <a href="~/Account/Login" class="navLogin">Log In</a>
+    </div>
+    <!--
     <div class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -19,13 +25,12 @@
             </div>
         </div>
     </div>
+        -->
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

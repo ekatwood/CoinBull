@@ -59,6 +59,11 @@ namespace CoinBull.Controllers
             }
         }
 
+        public ActionResult UserProfile()
+        {
+
+            return View();
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]

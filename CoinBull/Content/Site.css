@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -7,8 +6,13 @@ label{
     margin-bottom: 0;
 }
 
-#errorModal{
-    margin-top:70px;
+.myNav {
+    height: 40px;
+    background-color: #d11d17;
+}
+
+#errorModal {
+    margin-top: 70px;
 }
 
 .buttonsContainer {
@@ -65,7 +69,37 @@ label{
     border: 2px solid #d11d17;
 }
 
+.navLogin{
+    float:right;
+    color:white;
+    font-size:15px;
+    padding-right:8px;
+    padding-top:8px;
+}
 
+/* unvisited link */
+.navLogin:link {
+    color: white;
+    text-decoration: none;
+}
+
+/* visited link */
+.navLogin:visited {
+    color: white;
+    text-decoration: none;
+}
+
+/* mouse over link */
+.navLogin:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* selected link */
+.navLogin:active {
+    color: white;
+    text-decoration: none;
+}
 
 
 .alertList {

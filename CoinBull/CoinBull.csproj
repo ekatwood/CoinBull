@@ -190,6 +190,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bullicon.png" />
+    <Content Include="Images\favicon.png" />
+    <Content Include="Images\profile.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\BTCPricesWidget - Web Deploy.pubxml" />
@@ -243,6 +246,7 @@
     <Content Include="Views\Home\SetAlert.cshtml" />
     <Content Include="Views\Home\EditAlert.cshtml" />
     <Content Include="Views\Home\AddAlert.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
