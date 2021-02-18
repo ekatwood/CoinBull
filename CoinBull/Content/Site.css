@@ -8,7 +8,7 @@ label{
 }
 
 #errorModal{
-    margin-top:50px;
+    margin-top:70px;
 }
 
 .buttonsContainer {
@@ -53,13 +53,14 @@ label{
     color: white;
     padding: 8px 16px;
     text-align: center;
+    font-weight:bold;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    width: 145px;
+    width: 128px;
     border-radius: 10px;
     border: 2px solid #d11d17;
 }
@@ -78,12 +79,14 @@ label{
     background-color: #f8f8f8;
     padding: 5px;
     margin-bottom: 10px;
-    height: 42px;
+    height: 56px;
 }
 
 .alertLink {
     float: left;
-    padding-top:6px;
+    padding-top:12px;
+    font-size:15px;
+    font-weight:bold;
     
 }
 
@@ -116,8 +119,8 @@ label{
     border: 1px solid white;
     background-color: #d11d17;
     font-size: 16px;
-    height: 2.5em;
-    width: 2.5em;
+    height: 3.1em;
+    width: 3.1em;
     border-radius: 999px;
     position: relative;
 }
@@ -132,13 +135,13 @@ label{
 }
 
 .plus-button:before {
-    height: 1em;
-    width: 0.2em;
+    height: 1.5em;
+    width: 0.3em;
 }
 
 .plus-button:after {
-    height: 0.2em;
-    width: 1em;
+    height: 0.3em;
+    width: 1.5em;
 }
 
 
@@ -151,7 +154,7 @@ label{
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-top:-1px;
+    margin-top:6px;
 }
 
 /* Hide default HTML checkbox */
