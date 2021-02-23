@@ -191,7 +191,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\bullicon.png" />
-    <Content Include="Images\favicon.png" />
     <Content Include="Images\profile.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -247,6 +246,7 @@
     <Content Include="Views\Home\EditAlert.cshtml" />
     <Content Include="Views\Home\AddAlert.cshtml" />
     <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Home\RegisterConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

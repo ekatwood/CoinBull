@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "RegisterConfirmation";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<center>
+    <h2>You're All Set.</h2>
+    <br />
+
+    <h4>You will be emailed when </h4>
+
+    <h4 class="registerConfirmation">@TempData["CoinsString"]</h4>
+
+    <h4>increases by @TempData["Percent"]% in @TempData["Minutes"].</h4>
+
+    <br />
+    <br />
+    <button id="Copy" class="actionButton">Tell A Friend</button>
+    <br />
+    <br />
+    <p style="font-style:italic">Hint: make a folder in your inbox for emails from 'UpdateDaemon@coinbull.app'. This will keep your primary inbox uncluttered.</p>
+
+
+</center>
+
+<div class="modal fade modalmods" id="clipboardModal" style="margin-top:50px">
+    <div class="modal-dialog">
+        <center>
+            <div class="modal-content">
+                <div class="modal-body message">
+                    Share link copied to clipboard!
+                </div>
+            </div>
+        </center>
+    </div>
+</div>
+
+<script>
+
+    function Clipboard_CopyTo(value) {
+        var tempInput = document.createElement("input");
+        tempInput.value = value;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        $('#clipboardModal').modal("show");
+    }
+
+    document.querySelector('#Copy').onclick = function () {
+        Clipboard_CopyTo('https://coinbull.app');
+    }
+
+</script>

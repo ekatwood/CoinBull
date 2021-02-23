@@ -12,6 +12,7 @@ using CoinBull.Models;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Security;
 
 namespace CoinBull.Controllers
 {
@@ -167,9 +168,6 @@ namespace CoinBull.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    Debug.WriteLine(TempData["Coins"]);
-                    Debug.WriteLine(TempData["Percent"]);
-                    Debug.WriteLine(TempData["Minutes"]);
 
                     //add new user to Notifications and add first job
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -213,14 +211,49 @@ namespace CoinBull.Controllers
 
 
                     await SignInManager.SignInAsync(user, isPersistent:true, rememberBrowser:true);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+
+
+                    //set up coins list for confirmation page
+                    string coinz = model.Coins;
+
+                    var listOfCoinz = coinz.Split(',');
+
+                    if (listOfCoinz.Length == 1)
+                        TempData["CoinsString"] = listOfCoinz[0];
+                    else if (listOfCoinz.Length == 2)
+                        TempData["CoinsString"] = listOfCoinz[0] + " or " + listOfCoinz[1];
+                    else
+                    {
+                        string temp = "";
+
+                        for(int i = 0;i < listOfCoinz.Length - 1; i++)
+                        {
+                            temp = temp + listOfCoinz[i] + ", ";
+                        }
+
+                        temp = temp + "or " + listOfCoinz[listOfCoinz.Length - 1];
+
+                        TempData["CoinsString"] = temp;
+                    }
+
+                    TempData["Percent"] = model.Percent;
+
+                    if (Convert.ToInt32(model.Minutes) < 60)
+                        TempData["Minutes"] = model.Minutes + " minutes";
+                    else
+                        TempData["Minutes"] = (Convert.ToInt32(model.Minutes) / 60).ToString() + " hours";
+
+
+
+
+                    return RedirectToAction("RegisterConfirmation", "Home");
                 }
                 AddErrors(result);
             }

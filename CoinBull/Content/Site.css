@@ -1,5 +1,5 @@
 ﻿body {
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 label{
@@ -57,24 +57,47 @@ label{
     color: white;
     padding: 8px 16px;
     text-align: center;
-    font-weight:bold;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    width: 128px;
+    width: 168px;
     border-radius: 10px;
     border: 2px solid #d11d17;
+    box-shadow: 4px 4px 2px #888888;
 }
 
-.navLogin{
-    float:right;
-    color:white;
-    font-size:15px;
-    padding-right:8px;
-    padding-top:8px;
+.deleteButton {
+    background-color: transparent;
+    color: red;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 168px;
+    border-radius: 10px;
+    border: 2px solid #d11d17;
+    box-shadow: 5px 5px 2px #aaaaaa;
+}
+
+.registerConfirmation{
+    background-color:#f9f9f9;
+    max-width:250px;
+    padding:2px;
+}
+
+.navLogin {
+    float: right;
+    color: white;
+    font-size: 15px;
+    padding-right: 5px;
+    padding-top: 4px;
 }
 
 /* unvisited link */
@@ -110,7 +133,8 @@ label{
 
 .myAlert {
     border-radius: 10px;
-    background-color: #f8f8f8;
+    background-color: transparent;
+    border: 2px solid #d11d17;
     padding: 5px;
     margin-bottom: 10px;
     height: 56px;
@@ -118,9 +142,8 @@ label{
 
 .alertLink {
     float: left;
-    padding-top:12px;
+    padding-top:11px;
     font-size:15px;
-    font-weight:bold;
     
 }
 
@@ -178,17 +201,26 @@ label{
     width: 1.5em;
 }
 
+.customSelect {
+    background-color: #dedede;
+    border-color: #dedede;
+    /*border-color: lightslategray;*/
+}
 
-
+.inputText {
+    border-radius:3px; 
+    border-color:darkslategray;
+    width:250px
+}
 
 /* The switch - the box around the slider */
 .switch {
-    float:right;
+    float: right;
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-top:6px;
+    margin-top: 4px;
 }
 
 /* Hide default HTML checkbox */
@@ -224,11 +256,11 @@ label{
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #0fd48b;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #0fd48b;
 }
 
 input:checked + .slider:before {
@@ -236,6 +268,8 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
+
 
 /* Rounded sliders */
 .slider.round {

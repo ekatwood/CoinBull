@@ -1,6 +1,5 @@
 ﻿@{
     ViewBag.Title = "CoinBull";
-    Layout = "~/Views/Shared/_LayoutNewUser.cshtml";
 
     string coins = ViewBag.Coins;
     var coinsList = coins.Split(',');
@@ -15,7 +14,6 @@
 
 <center>
     <h2>Never miss another running of the Bull &#128640;</h2>
-    <br />
     <h4>Select which coins to watch:</h4>
     <button id="select_all" onclick="selectAll()" class="selectAllButton">Select All</button>
     <br />

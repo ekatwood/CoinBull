@@ -64,6 +64,11 @@ namespace CoinBull.Controllers
             return View();
         }
 
+        public ActionResult RegisterConfirmation()
+        {
+            return View();
+        }
+
         [HttpPost]
         public void UpdateCoins(Dictionary<string, int> Coins)
         {

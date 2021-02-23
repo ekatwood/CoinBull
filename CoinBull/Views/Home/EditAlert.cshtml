@@ -11,7 +11,7 @@
     <h2>Edit Alert</h2>
     <br />
     <h4>
-        <select name="percent" id="percent">
+        <select name="percent" id="percent" class="customSelect">
             @{
                 int x = -20;
                 while (x <= -1)
@@ -44,7 +44,7 @@
                 }
             }
         </select> in
-        <select name="minutes" id="minutes">
+        <select name="minutes" id="minutes" class="customSelect">
             @{
                 int j = 5;
                 while (j <= 55)
@@ -143,7 +143,7 @@
     <br />
     <br />
 
-    <button id="deleteAlert" class="actionButton" style="background-color:darkred;border-color:darkred">Delete Alert</button>
+    <button id="deleteAlert" class="deleteButton">Delete Alert</button>
 
 </center>
 
