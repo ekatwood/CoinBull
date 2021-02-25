@@ -32,7 +32,7 @@ namespace CoinBull.Controllers
             {
                 await connection.OpenAsync();
 
-                using (var command = new SqlCommand("GetJobsForUser", connection))
+                using (var command = new SqlCommand("GetAllJobsForUser", connection))
                 {
 
                     command.CommandType = CommandType.StoredProcedure;
@@ -291,10 +291,9 @@ namespace CoinBull.Controllers
             return true;
         }
 
-        public ActionResult About()
+        public ActionResult TermsOfService()
         {
-            ViewBag.Message = "Your application description page.";
-
+            
             return View();
         }
 
